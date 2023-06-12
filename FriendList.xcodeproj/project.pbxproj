@@ -147,7 +147,6 @@
 		BF4287022A331EFE002758CE /* FriendList */ = {
 			isa = PBXGroup;
 			children = (
-				BFCDB2022A36AF5E00B2900F /* ViewControllers */,
 				BFCDB1F82A35C86B00B2900F /* IsInvitingTableViewController.swift */,
 				BFCDB1FA2A35DBA300B2900F /* IsInvitingTableViewCell.swift */,
 				BF4287072A331EFE002758CE /* FriendsViewController.swift */,
@@ -156,6 +155,7 @@
 				BFCDB1EE2A34043500B2900F /* FriendListViewCell.swift */,
 				BFCDB1D42A33301200B2900F /* Constants.swift */,
 				BFCDB1D02A332E8A00B2900F /* NetworkManager.swift */,
+				BFCDB2022A36AF5E00B2900F /* ViewControllers */,
 				BFCDB1F42A34486400B2900F /* Main */,
 				BFCDB1F52A34487800B2900F /* View */,
 				BFCDB1EB2A337FC400B2900F /* Components */,

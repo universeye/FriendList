@@ -16,7 +16,16 @@ class CustumSegmentedControl: UIView {
     private var buttonTitles: [String]!
     private var buttons: [UIButton]!
     private var selectorView: UIView!
-    
+    private var unreadCount: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.translatesAutoresizingMaskIntoConstraints =  false
+        label.textColor = .white
+        label.layer.backgroundColor = FriendListColor.softPink.cgColor
+        label.layer.cornerRadius = 9
+        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.textAlignment = .center
+        return label
+    }()
     var textColor: UIColor = FriendListColor.greyishBrown
     var selectorViewColor: UIColor = FriendListColor.hotPink
     var selectorTextColor: UIColor = .black
@@ -111,9 +120,22 @@ class CustumSegmentedControl: UIView {
         }
     }
     
+    private func configureUnreadCountText() {
+        buttons[1].addSubview(unreadCount)
+        unreadCount.text = "99+"
+        
+        NSLayoutConstraint.activate([
+            unreadCount.leadingAnchor.constraint(equalTo: buttons[1].titleLabel!.trailingAnchor, constant: 4),
+            unreadCount.centerYAnchor.constraint(equalTo: buttons[1].centerYAnchor, constant: -8),
+            unreadCount.widthAnchor.constraint(equalToConstant: 30),
+            unreadCount.heightAnchor.constraint(equalToConstant: 19)
+        ])
+    }
+    
     private func updateView() {
         createButton()
         configSelectorView()
         configureStackView()
+        configureUnreadCountText()
     }
 }

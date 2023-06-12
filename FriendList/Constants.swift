@@ -48,4 +48,5 @@ struct FriendListColor {
     static let hotPink = UIColor(named: "hotPink")!
     static let favoriteStar = UIColor(named: "favoriteColor")!
     static let brownGrey = UIColor(named: "brownGrey")!
+    static let softPink = UIColor(named: "softPink")!
 }
