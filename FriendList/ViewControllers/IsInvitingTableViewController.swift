@@ -77,12 +77,16 @@ class IsInvitingTableViewController: UIViewController {
             self.hiddenSections.remove(section)
             self.tableView.insertRows(at: indexPathsForSection(),
                                       with: .fade)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.tableView.reloadData()
+            }
         } else {
             self.hiddenSections.insert(section)
             self.tableView.deleteRows(at: indexPathsForSection(),
                                       with: .fade)
+            self.tableView.reloadData()
         }
-        self.tableView.reloadData()
+        
     }
 }
 

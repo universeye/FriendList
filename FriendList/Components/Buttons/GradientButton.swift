@@ -12,9 +12,8 @@ class GradientButton: UIButton {
     private let gradientLayer:CAGradientLayer = CAGradientLayer()
     
     private let icon: UIImageView = {
-       let image = UIImageView()
+        let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        
         image.contentMode = .scaleAspectFit
         return image
     }()
@@ -39,14 +38,8 @@ class GradientButton: UIButton {
     }
     
     private func configure() {
-//        gradientLayer.frame.size = self.frame.size
-//        gradientLayer.colors = [UIColor.white.cgColor,UIColor.green.withAlphaComponent(1).cgColor]
-//        gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
-//        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
         addSubview(icon)
-        backgroundColor = FriendListColor.hotPink
         layer.cornerRadius = 20
-        layer.insertSublayer(gradientLayer, at: 0)
         translatesAutoresizingMaskIntoConstraints = false
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowRadius = 6
@@ -62,4 +55,15 @@ class GradientButton: UIButton {
         ])
     }
     
+    override func draw(_ rect: CGRect) {
+        gradientLayer.frame = rect
+        gradientLayer.colors = [FriendListColor.frogGreen.cgColor, FriendListColor.booger.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
+        
+        layer.insertSublayer(gradientLayer, at: 0)
+        
+        layer.cornerRadius = rect.height / 2
+        clipsToBounds = true
+    }
 }
