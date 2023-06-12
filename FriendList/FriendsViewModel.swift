@@ -17,14 +17,29 @@ class FriendsViewModel {
     
     var friendListData: [Friends.Response] = [] {
         didSet {
-            valueChanged?(self)
+            if !friendListData.isEmpty {
+                valueChanged?(self)
+            }
         }
     }
+    
+    var friendListIsInviting: [Friends.Response] = [] {
+        didSet {
+            if !friendListIsInviting.isEmpty {
+                valueChanged?(self)
+            }
+            
+        }
+    }
+    
+    var firstInvitation: Friends.Response?
     
     var valueChanged: ((FriendsViewModel) -> Void)?
     
     func getData(scenario: Scenario) {
         self.friendListData = []
+        self.friendListIsInviting = []
+        
         Task {
             do {
                 let userData = try await NetworkManager.shared.getUserData()
@@ -50,10 +65,18 @@ class FriendsViewModel {
                     
                     self.friendListData = friendListDataUnique.sorted { ($0.status, $0.isTop) > ($1.status, $1.isTop) }
                     
+                } else if scenario == .friendsWithInvites {
+                    let friendData_1 = try await NetworkManager.shared.getFriendsData(scenario: scenario)
+                    var data = friendData_1.response.filter({ $0.status == 0 })
+                    self.firstInvitation = data.removeFirst()
+                    self.friendListIsInviting = data
+                    self.friendListData = friendData_1.response.map { $0 }.sorted { ($0.status, $0.isTop) > ($1.status, $1.isTop) }.filter({ $0.status != 0 })
                 } else {
                     let friendData_1 = try await NetworkManager.shared.getFriendsData(scenario: scenario)
                     self.friendListData = friendData_1.response.map { $0 }.sorted { ($0.status, $0.isTop) > ($1.status, $1.isTop) }
                 }
+                
+                
                 
                 self.userData = userData.response[0]
                 

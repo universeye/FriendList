@@ -8,9 +8,10 @@
 import UIKit
 
 class FriendsViewController: UIViewController {
-    private lazy var scanButton = UIBarButtonItem(image: Icon.pinkScanIcon, style: .plain, target: self, action: #selector(didTapFeatureList))
-    private lazy var withDrawButton = UIBarButtonItem(image: Icon.pinkWithDrawIcon, style: .plain, target: self, action: #selector(didTapFeatureList))
-    private lazy var transferButton = UIBarButtonItem(image: Icon.pinkTransferIcon, style: .plain, target: self, action: #selector(didTapFeatureList))
+    //MARK: - Properties
+    private lazy var scanButton = UIBarButtonItem(image: Icon.pinkScanIcon, style: .plain, target: self, action: #selector(didTapScanButton))
+    private lazy var withDrawButton = UIBarButtonItem(image: Icon.pinkWithDrawIcon, style: .plain, target: self, action: #selector(didTapWithDrawButton))
+    private lazy var transferButton = UIBarButtonItem(image: Icon.pinkTransferIcon, style: .plain, target: self, action: #selector(didTapTransferButton))
     
     private lazy var userInfoView = UserInfoView()
     private let viewModel: FriendsViewModel = FriendsViewModel()
@@ -21,23 +22,24 @@ class FriendsViewController: UIViewController {
         tableView.register(FriendListViewCell.self, forCellReuseIdentifier: FriendListViewCell.reuseID)
         return tableView
     }()
+    private let isInvitingTableView = UIView()
     private let dividerView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 4))
         view.backgroundColor = UIColor.systemGray.withAlphaComponent(0.2)
         return view
     }()
-    lazy var codeSegmented = CustumSegmentedControl(frame: CGRect(x: 0, y: 150, width: self.view.frame.width, height: 50), buttonTitle: ["好友", "聊天"])
+    private lazy var codeSegmented = CustumSegmentedControl(frame: CGRect(x: 0, y: 150, width: self.view.frame.width, height: 50), buttonTitle: ["好友", "聊天"])
     
+    //MARK: - App's Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNav()
-        configureUserInfoView()
         setupBinding()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.getData(scenario: .friends_1)
+        viewModel.getData(scenario: .friendsWithInvites)
     }
     
     private func setupBinding() {
@@ -48,36 +50,51 @@ class FriendsViewController: UIViewController {
             DispatchQueue.main.async {
                 self.userInfoView.name.text = self.viewModel.userData?.name ?? ""
                 self.userInfoView.kokoIDLabel.text = "KOKO ID: \(self.viewModel.userData?.kokoid ?? "")"
+                self.configureUserInfoView(isInvitingDataExsist: !self.viewModel.friendListIsInviting.isEmpty)
                 
                 if self.viewModel.friendListData.isEmpty {
                     self.configureEmptyView()
                     self.emptyView.isHidden = false
+                    self.friendListTableView.isHidden = true
                 } else {
                     self.emptyView.isHidden = true
                     self.configureTableView()
                     self.friendListTableView.reloadData()
+                    self.friendListTableView.isHidden = false
                 }
+                self.dimissLoadingView()
             }
-            print("S: \(viewModel.friendListData)")
-            dimissLoadingView()
+            print("Friend List Data: \(viewModel.friendListData), Friend List is Inviting: \(viewModel.friendListIsInviting)")
+            
         }
     }
     
+    //MARK: - Configurations
     private func configureNav() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = FriendListColor.white2
+        
         navigationItem.rightBarButtonItem = scanButton
         navigationItem.leftBarButtonItems = [withDrawButton, transferButton]
     }
     
-    private func configureUserInfoView() {
+    private func configureUserInfoView(isInvitingDataExsist: Bool) {
         view.addSubview(userInfoView)
         view.addSubview(codeSegmented)
         view.addSubview(dividerView)
+        
+        if isInvitingDataExsist {
+            configureIsInvitingTableView()
+            codeSegmented.topAnchor.constraint(equalTo: isInvitingTableView.bottomAnchor).isActive = true
+        } else {
+            codeSegmented.topAnchor.constraint(equalTo: userInfoView.bottomAnchor).isActive = true
+        }
+        
         codeSegmented.translatesAutoresizingMaskIntoConstraints = false
         dividerView.translatesAutoresizingMaskIntoConstraints = false
         userInfoView.translatesAutoresizingMaskIntoConstraints = false
         codeSegmented.delegte = self
         codeSegmented.backgroundColor = .clear
+        
         
         NSLayoutConstraint.activate([
             userInfoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -88,12 +105,27 @@ class FriendsViewController: UIViewController {
             codeSegmented.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             codeSegmented.widthAnchor.constraint(equalToConstant: 150),
             codeSegmented.heightAnchor.constraint(equalToConstant: 40),
-            codeSegmented.topAnchor.constraint(equalTo: userInfoView.bottomAnchor),
+            
             
             dividerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             dividerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             dividerView.heightAnchor.constraint(equalToConstant: 1),
             dividerView.topAnchor.constraint(equalTo: codeSegmented.bottomAnchor, constant: 2)
+        ])
+    }
+    
+    private func configureIsInvitingTableView() {
+        view.addSubview(isInvitingTableView)
+        isInvitingTableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let isInvitingTableViewController = IsInvitingTableViewController(isInvitingMember: viewModel.friendListIsInviting, firstInvitation: viewModel.firstInvitation ?? viewModel.friendListIsInviting[0])
+        add(isInvitingTableViewController, in: isInvitingTableView)
+        
+        NSLayoutConstraint.activate([
+            isInvitingTableView.topAnchor.constraint(equalTo: userInfoView.bottomAnchor),
+            isInvitingTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            isInvitingTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            isInvitingTableView.heightAnchor.constraint(greaterThanOrEqualToConstant: 190)
         ])
     }
     
@@ -116,7 +148,7 @@ class FriendsViewController: UIViewController {
         emptyView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            emptyView.topAnchor.constraint(equalTo: userInfoView.bottomAnchor, constant: 16),
+            emptyView.topAnchor.constraint(equalTo: dividerView.bottomAnchor, constant: 32),
             emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             emptyView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -124,8 +156,25 @@ class FriendsViewController: UIViewController {
         
     }
     
-    @objc private func didTapFeatureList() {
-        
+    @objc private func didTapWithDrawButton() {
+        showLoadingView()
+        isInvitingTableView.removeFromSuperview()
+        viewModel.getData(scenario: .noFriends)
+    }
+    
+    @objc private func didTapTransferButton() {
+        showLoadingView()
+        isInvitingTableView.removeFromSuperview()
+        viewModel.getData(scenario: .friends_1)
+    }
+    
+    @objc private func didTapScanButton() {
+        showLoadingView()
+        userInfoView.removeFromSuperview()
+        codeSegmented.removeFromSuperview()
+        dividerView.removeFromSuperview()
+        friendListTableView.removeFromSuperview()
+        viewModel.getData(scenario: .friendsWithInvites)
     }
 }
 
@@ -150,7 +199,6 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
 }
 
 //MARK: - CUSTUMSegmentedControl Delegate

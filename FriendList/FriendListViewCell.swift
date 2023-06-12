@@ -21,7 +21,7 @@ class FriendListViewCell: UITableViewCell {
     }()
     
     private let transferButton = FriendListCellButton(color: FriendListColor.hotPink, title: "轉帳")
-    private let isInviting = FriendListCellButton(color: .systemGray3, title: "邀請中")
+    private let isInviting = FriendListCellButton(color: .systemGray2, title: "邀請中")
     
     private let moreButton: UIButton = {
         let button = UIButton()

@@ -19,7 +19,7 @@ class UserInfoView: UIView {
     var kokoIDLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 13)
+        label.font = .systemFont(ofSize: 14)
         return label
     }()
     
