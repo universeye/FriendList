@@ -47,6 +47,7 @@
 		BFCDB21A2A37045F00B2900F /* BackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB2192A37045F00B2900F /* BackGroundView.swift */; };
 		BFCDB21C2A370C0C00B2900F /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB21B2A370C0C00B2900F /* CustomAlertViewController.swift */; };
 		BFCDB21E2A370C4600B2900F /* AlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB21D2A370C4600B2900F /* AlertContainerView.swift */; };
+		BFCDB2202A37181400B2900F /* UIApplication + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB21F2A37181400B2900F /* UIApplication + Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		BFCDB2192A37045F00B2900F /* BackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackGroundView.swift; sourceTree = "<group>"; };
 		BFCDB21B2A370C0C00B2900F /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		BFCDB21D2A370C4600B2900F /* AlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertContainerView.swift; sourceTree = "<group>"; };
+		BFCDB21F2A37181400B2900F /* UIApplication + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication + Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				BFCDB1E22A336F3C00B2900F /* UIViewController + Ext.swift */,
+				BFCDB21F2A37181400B2900F /* UIApplication + Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				BF4287082A331EFE002758CE /* FriendsViewController.swift in Sources */,
 				BFCDB1DA2A3355FC00B2900F /* UserInfoView.swift in Sources */,
 				BFCDB1D52A33301200B2900F /* Constants.swift in Sources */,
+				BFCDB2202A37181400B2900F /* UIApplication + Ext.swift in Sources */,
 				BFCDB21E2A370C4600B2900F /* AlertContainerView.swift in Sources */,
 				BFCDB1F12A340E3500B2900F /* FriendListCellButton.swift in Sources */,
 				BFCDB21C2A370C0C00B2900F /* CustomAlertViewController.swift in Sources */,
