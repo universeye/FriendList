@@ -64,7 +64,7 @@ class EmptyFriendView: UIView {
         
         NSLayoutConstraint.activate([
             addFriendButton.widthAnchor.constraint(equalToConstant: 250),
-            addFriendButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 32),
+            addFriendButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 24),
             addFriendButton.heightAnchor.constraint(equalToConstant: 49),
             addFriendButton.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
