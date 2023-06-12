@@ -22,6 +22,8 @@ class CustomSearchBar : UISearchBar {
         placeholder = " Search..."
         sizeToFit()
         layer.cornerRadius = 5
+
+        tintColor = FriendListColor.hotPink
         isTranslucent = false
         backgroundColor = .white
         translatesAutoresizingMaskIntoConstraints = false

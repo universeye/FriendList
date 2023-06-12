@@ -23,6 +23,9 @@ class FriendsViewModel {
         }
     }
     
+    private var originFriendListData: [Friends.Response] = []
+    private var filterdFriendListData: [Friends.Response] = []
+    
     var friendListIsInviting: [Friends.Response] = [] {
         didSet {
             if !friendListIsInviting.isEmpty {
@@ -35,6 +38,16 @@ class FriendsViewModel {
     var firstInvitation: Friends.Response?
     
     var valueChanged: ((FriendsViewModel) -> Void)?
+    
+    func filter(keyword: String) {
+        filterdFriendListData = originFriendListData
+        filterdFriendListData = filterdFriendListData.filter({ $0.name.contains(keyword) })
+        friendListData = filterdFriendListData
+    }
+    
+    func restore() {
+        friendListData = originFriendListData
+    }
     
     func getData(scenario: Scenario) {
         self.friendListData = []
@@ -79,6 +92,7 @@ class FriendsViewModel {
                 
                 
                 self.userData = userData.response[0]
+                self.originFriendListData = friendListData
                 
             } catch {
                 print("Error: \(error)")

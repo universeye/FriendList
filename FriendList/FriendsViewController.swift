@@ -32,6 +32,9 @@ class FriendsViewController: UIViewController {
     private let searchBar = CustomSearchBar()
     private let addFriendButton = AddFriendButton()
     private lazy var codeSegmented = CustumSegmentedControl(frame: CGRect(x: 0, y: 150, width: self.view.frame.width, height: 50), buttonTitle: ["好友", "聊天"])
+    private var originSearchBarPosition: CGFloat = 0
+    private var originFriendListTableView: CGFloat = 0
+    private var originAddFriendButton: CGFloat = 0
     
     //MARK: - App's Life cycle
     override func viewDidLoad() {
@@ -45,11 +48,18 @@ class FriendsViewController: UIViewController {
         viewModel.getData(scenario: .friendsWithInvites)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        originSearchBarPosition = searchBar.frame.origin.y
+        originAddFriendButton = addFriendButton.frame.origin.y
+        originFriendListTableView = friendListTableView.frame.origin.y
+    }
+    
     private func setupBinding() {
         showLoadingView()
         viewModel.valueChanged = { [weak self](vm) in
             guard let self = self else { return }
-           
+            
             DispatchQueue.main.async {
                 self.refreshControlll.endRefreshing()
                 self.userInfoView.name.text = self.viewModel.userData?.name ?? ""
@@ -67,6 +77,7 @@ class FriendsViewController: UIViewController {
                     self.friendListTableView.isHidden = false
                 }
                 self.dimissLoadingView()
+                
             }
             print("Friend List Data: \(viewModel.friendListData), Friend List is Inviting: \(viewModel.friendListIsInviting)")
             
@@ -76,9 +87,11 @@ class FriendsViewController: UIViewController {
     //MARK: - Configurations
     private func configureNav() {
         view.backgroundColor = FriendListColor.white2
-        
+        title = ""
         navigationItem.rightBarButtonItem = scanButton
         navigationItem.leftBarButtonItems = [withDrawButton, transferButton]
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func configureUserInfoView(isInvitingDataExsist: Bool) {
@@ -143,17 +156,18 @@ class FriendsViewController: UIViewController {
         searchBar.delegate = self
         view.addSubview(searchBar)
         view.addSubview(addFriendButton)
+        addFriendButton.isEnabled = false
         
         NSLayoutConstraint.activate([
             addFriendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            addFriendButton.topAnchor.constraint(equalTo: dividerView.bottomAnchor,constant: 8),
+            addFriendButton.topAnchor.constraint(equalTo: dividerView.bottomAnchor,constant: 10),
             addFriendButton.heightAnchor.constraint(equalToConstant: 50),
             addFriendButton.widthAnchor.constraint(equalToConstant: 50),
             
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             searchBar.trailingAnchor.constraint(equalTo: addFriendButton.leadingAnchor, constant: 8),
             searchBar.topAnchor.constraint(equalTo: dividerView.bottomAnchor, constant: 8),
-            searchBar.heightAnchor.constraint(equalToConstant: 50),
+            searchBar.heightAnchor.constraint(equalToConstant: 60),
             
             friendListTableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             friendListTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -195,13 +209,52 @@ class FriendsViewController: UIViewController {
         codeSegmented.removeFromSuperview()
         dividerView.removeFromSuperview()
         friendListTableView.removeFromSuperview()
+        searchBar.removeFromSuperview()
+        addFriendButton.removeFromSuperview()
         viewModel.getData(scenario: .friendsWithInvites)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyBoardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                UIView.animate(withDuration: 0.3, delay: 0.0) {
+                    self.userInfoView.isHidden = true
+                    self.isInvitingTableView.isHidden = true
+                    self.searchBar.frame.origin.y = 80
+                    self.addFriendButton.frame.origin.y = 80
+                    self.friendListTableView.frame.origin.y = 80 + self.searchBar.frame.height
+                    self.codeSegmented.alpha = 0
+                    self.scanButton.isHidden = true
+                    self.withDrawButton.isHidden = true
+                    self.transferButton.isHidden = true
+                }
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let _ = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                UIView.animate(withDuration: 0.2, delay: 0.0) {
+                    self.userInfoView.isHidden = false
+                    self.isInvitingTableView.isHidden = false
+                    self.searchBar.frame.origin.y = self.originSearchBarPosition
+                    self.addFriendButton.frame.origin.y = self.originAddFriendButton
+                    self.friendListTableView.frame.origin.y = self.originFriendListTableView
+                    self.codeSegmented.alpha = 1
+                    self.scanButton.isHidden = false
+                    self.withDrawButton.isHidden = false
+                    self.transferButton.isHidden = false
+                }
+            }
+        }
     }
     
     //MARK: Refresh Actions
     @objc private func refresh(_ sender: AnyObject) {
         viewModel.getData(scenario: .friendsWithInvites)
     }
+    
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
@@ -230,12 +283,30 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
 //MARK: - CUSTUMSegmentedControl Delegate
 extension FriendsViewController: CustumSegmentedControlDelegate {
     func chageToIndex(index: Int) {
-        print(index)
+        
     }
 }
 
 
 //MARK: - UISearchBarDelegate
 extension FriendsViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.125) {
+            self.searchBar.endEditing(true)
+            self.viewModel.filter(keyword: searchBar.text ?? "")
+            self.searchBar.showsCancelButton = false
+        }
+        
+    }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.restore()
+        view.endEditing(true)
+        searchBar.showsCancelButton = false
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
 }
+
