@@ -111,18 +111,9 @@ extension IsInvitingTableViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let sectionButton = UIButton()
-        sectionButton.setTitle(self.firstInvitation.name,
-                               for: .normal)
-        sectionButton.backgroundColor = .black
-        sectionButton.tag = section
         tag = section
-//        sectionButton.addTarget(self,
-//                                action: #selector(self.hideSection(sender:)),
-//                                for: .touchUpInside)
-        
         let containerView = UIView()
-        let containerView2 = IsInvitingCellView()
+        let containerView2 = IsInvitingCellView(name: firstInvitation.name)
         containerView.addSubview(containerView2)
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideSection))
         containerView2.addGestureRecognizer(tap)

@@ -15,6 +15,7 @@ class FriendsViewController: UIViewController {
     
     private lazy var userInfoView = UserInfoView()
     private let viewModel: FriendsViewModel = FriendsViewModel()
+    private let refreshControlll = UIRefreshControl()
     private let emptyView = EmptyFriendView()
     private let friendListTableView: UITableView = {
         let tableView = UITableView()
@@ -48,6 +49,7 @@ class FriendsViewController: UIViewController {
             guard let self = self else { return }
            
             DispatchQueue.main.async {
+                self.refreshControlll.endRefreshing()
                 self.userInfoView.name.text = self.viewModel.userData?.name ?? ""
                 self.userInfoView.kokoIDLabel.text = "KOKO ID: \(self.viewModel.userData?.kokoid ?? "")"
                 self.configureUserInfoView(isInvitingDataExsist: !self.viewModel.friendListIsInviting.isEmpty)
@@ -134,6 +136,8 @@ class FriendsViewController: UIViewController {
         friendListTableView.translatesAutoresizingMaskIntoConstraints = false
         friendListTableView.dataSource = self
         friendListTableView.delegate = self
+        friendListTableView.addSubview(refreshControlll)
+        refreshControlll.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         
         NSLayoutConstraint.activate([
             friendListTableView.topAnchor.constraint(equalTo: dividerView.bottomAnchor),
@@ -174,6 +178,11 @@ class FriendsViewController: UIViewController {
         codeSegmented.removeFromSuperview()
         dividerView.removeFromSuperview()
         friendListTableView.removeFromSuperview()
+        viewModel.getData(scenario: .friendsWithInvites)
+    }
+    
+    //MARK: Refresh Actions
+    @objc private func refresh(_ sender: AnyObject) {
         viewModel.getData(scenario: .friendsWithInvites)
     }
 }

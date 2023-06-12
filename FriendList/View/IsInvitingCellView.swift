@@ -21,7 +21,8 @@ class IsInvitingCellView: UIView {
     private let confirmButton = CircleButton(color: FriendListColor.hotPink, image: "checkmark")
     private let refuseButton = CircleButton(color: FriendListColor.brownGrey, image: "xmark")
 
-    init() {
+    init(name: String) {
+        namelabel.text = name
         super.init(frame: .zero)
         configureButton()
         commonInit()
@@ -36,7 +37,6 @@ class IsInvitingCellView: UIView {
         addSubview(avatarImageView)
         
         addSubview(namelabel)
-        namelabel.text = "燦"
         addSubview(hintlabel)
         hintlabel.text = "邀請你成為好友：）"
         

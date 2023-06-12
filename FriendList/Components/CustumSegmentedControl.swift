@@ -43,7 +43,7 @@ class CustumSegmentedControl: UIView {
     }
     
     func setUnreadCount(isInvitingCount: Int, isShowUnreadCount: Bool) {
-        if isInvitingCount > 0 {
+        if isInvitingCount - 1 > 0 {
             self.isInvitingCount.isHidden = false
             self.isInvitingCount.text = "\(isInvitingCount)"
         } else {
