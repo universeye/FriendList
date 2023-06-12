@@ -20,7 +20,7 @@
 
 * Custum Alert View
 
-<img src= "ReadmeSources/lisumalert.png" width = 30% height = 30%>
+<img src= "ReadmeSources/alertView.png" width = 30% height = 30%>
 
 
 
