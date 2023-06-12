@@ -27,6 +27,11 @@ struct Icon {
     static let pinkTransferIcon = UIImage(named: "pinkTransfer")!.withRenderingMode(.alwaysOriginal)
     static let pinkWithDrawIcon = UIImage(named: "pinkWithDraw")!.withRenderingMode(.alwaysOriginal)
     static let femalePlaceHolderImage = UIImage(named: "femalePlaceHolderImage")!.withRenderingMode(.alwaysOriginal)
+    static let addFriendWhiteIcon = UIImage(named: "addFriendWhiteIcon")!.withRenderingMode(.alwaysOriginal)
+    static let productsIcon = UIImage(named: "moneyIcon")!.withRenderingMode(.alwaysTemplate)
+    static let friendIcon = UIImage(named: "friendIcon")!.withRenderingMode(.alwaysTemplate)
+    static let manageIcon = UIImage(named: "manageIcon")!.withRenderingMode(.alwaysTemplate)
+    static let kokoHomeIcon = UIImage(named: "kokoHomeIcon")!.withRenderingMode(.alwaysOriginal)
 }
 
 struct FriendListImage{
@@ -42,4 +47,5 @@ struct FriendListColor {
     static let greyishBrown = UIColor(named: "greyishBrown")!
     static let hotPink = UIColor(named: "hotPink")!
     static let favoriteStar = UIColor(named: "favoriteColor")!
+    static let brownGrey = UIColor(named: "brownGrey")!
 }

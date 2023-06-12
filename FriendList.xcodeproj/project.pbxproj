@@ -30,6 +30,16 @@
 		BFCDB1EF2A34043500B2900F /* FriendListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB1EE2A34043500B2900F /* FriendListViewCell.swift */; };
 		BFCDB1F12A340E3500B2900F /* FriendListCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB1F02A340E3500B2900F /* FriendListCellButton.swift */; };
 		BFCDB1F32A343F9500B2900F /* CustumSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB1F22A343F9500B2900F /* CustumSegmentedControl.swift */; };
+		BFCDB1F72A34712500B2900F /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB1F62A34712500B2900F /* GradientButton.swift */; };
+		BFCDB1F92A35C86B00B2900F /* IsInvitingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB1F82A35C86B00B2900F /* IsInvitingTableViewController.swift */; };
+		BFCDB1FB2A35DBA300B2900F /* IsInvitingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB1FA2A35DBA300B2900F /* IsInvitingTableViewCell.swift */; };
+		BFCDB1FD2A35EEA600B2900F /* IsInvitingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB1FC2A35EEA600B2900F /* IsInvitingCellView.swift */; };
+		BFCDB1FF2A35F5E800B2900F /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB1FE2A35F5E800B2900F /* CircleButton.swift */; };
+		BFCDB2012A36AE3500B2900F /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB2002A36AE3500B2900F /* MainTabbarController.swift */; };
+		BFCDB2042A36AF7600B2900F /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB2032A36AF7600B2900F /* ProductsViewController.swift */; };
+		BFCDB2062A36B25C00B2900F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB2052A36B25C00B2900F /* HomeViewController.swift */; };
+		BFCDB2082A36B27400B2900F /* ManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB2072A36B27400B2900F /* ManageViewController.swift */; };
+		BFCDB20A2A36B28800B2900F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB2092A36B28800B2900F /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +87,16 @@
 		BFCDB1EE2A34043500B2900F /* FriendListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewCell.swift; sourceTree = "<group>"; };
 		BFCDB1F02A340E3500B2900F /* FriendListCellButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListCellButton.swift; sourceTree = "<group>"; };
 		BFCDB1F22A343F9500B2900F /* CustumSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustumSegmentedControl.swift; sourceTree = "<group>"; };
+		BFCDB1F62A34712500B2900F /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		BFCDB1F82A35C86B00B2900F /* IsInvitingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsInvitingTableViewController.swift; sourceTree = "<group>"; };
+		BFCDB1FA2A35DBA300B2900F /* IsInvitingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsInvitingTableViewCell.swift; sourceTree = "<group>"; };
+		BFCDB1FC2A35EEA600B2900F /* IsInvitingCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsInvitingCellView.swift; sourceTree = "<group>"; };
+		BFCDB1FE2A35F5E800B2900F /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		BFCDB2002A36AE3500B2900F /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
+		BFCDB2032A36AF7600B2900F /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
+		BFCDB2052A36B25C00B2900F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		BFCDB2072A36B27400B2900F /* ManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageViewController.swift; sourceTree = "<group>"; };
+		BFCDB2092A36B28800B2900F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +147,9 @@
 		BF4287022A331EFE002758CE /* FriendList */ = {
 			isa = PBXGroup;
 			children = (
+				BFCDB2022A36AF5E00B2900F /* ViewControllers */,
+				BFCDB1F82A35C86B00B2900F /* IsInvitingTableViewController.swift */,
+				BFCDB1FA2A35DBA300B2900F /* IsInvitingTableViewCell.swift */,
 				BF4287072A331EFE002758CE /* FriendsViewController.swift */,
 				BFCDB1E02A3369B000B2900F /* FriendsViewModel.swift */,
 				BFCDB1EC2A3403E300B2900F /* FriendListView.swift */,
@@ -194,7 +217,9 @@
 				BFCDB1E82A33798800B2900F /* FriendsListLabel.swift */,
 				BFCDB1F02A340E3500B2900F /* FriendListCellButton.swift */,
 				BFCDB1F22A343F9500B2900F /* CustumSegmentedControl.swift */,
+				BFCDB1FE2A35F5E800B2900F /* CircleButton.swift */,
 				BFCDB1E42A336F8600B2900F /* DotsAnimationView.swift */,
+				BFCDB1F62A34712500B2900F /* GradientButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -204,6 +229,7 @@
 			children = (
 				BF4287032A331EFE002758CE /* AppDelegate.swift */,
 				BF4287052A331EFE002758CE /* SceneDelegate.swift */,
+				BFCDB2002A36AE3500B2900F /* MainTabbarController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -213,8 +239,20 @@
 			children = (
 				BFCDB1D92A3355FC00B2900F /* UserInfoView.swift */,
 				BFCDB1E62A33774800B2900F /* EmptyFriendView.swift */,
+				BFCDB1FC2A35EEA600B2900F /* IsInvitingCellView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		BFCDB2022A36AF5E00B2900F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				BFCDB2032A36AF7600B2900F /* ProductsViewController.swift */,
+				BFCDB2052A36B25C00B2900F /* HomeViewController.swift */,
+				BFCDB2072A36B27400B2900F /* ManageViewController.swift */,
+				BFCDB2092A36B28800B2900F /* SettingsViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,23 +386,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFCDB2062A36B25C00B2900F /* HomeViewController.swift in Sources */,
 				BFCDB1D12A332E8A00B2900F /* NetworkManager.swift in Sources */,
+				BFCDB1FD2A35EEA600B2900F /* IsInvitingCellView.swift in Sources */,
 				BFCDB1D82A3337B000B2900F /* Friends.swift in Sources */,
 				BF4287082A331EFE002758CE /* FriendsViewController.swift in Sources */,
 				BFCDB1DA2A3355FC00B2900F /* UserInfoView.swift in Sources */,
 				BFCDB1D52A33301200B2900F /* Constants.swift in Sources */,
 				BFCDB1F12A340E3500B2900F /* FriendListCellButton.swift in Sources */,
+				BFCDB1F92A35C86B00B2900F /* IsInvitingTableViewController.swift in Sources */,
 				BF4287042A331EFE002758CE /* AppDelegate.swift in Sources */,
 				BFCDB1E72A33774800B2900F /* EmptyFriendView.swift in Sources */,
 				BFCDB1F32A343F9500B2900F /* CustumSegmentedControl.swift in Sources */,
 				BFCDB1D32A332F9800B2900F /* UserData.swift in Sources */,
+				BFCDB1FB2A35DBA300B2900F /* IsInvitingTableViewCell.swift in Sources */,
 				BF4287062A331EFE002758CE /* SceneDelegate.swift in Sources */,
 				BFCDB1E32A336F3C00B2900F /* UIViewController + Ext.swift in Sources */,
 				BFCDB1EF2A34043500B2900F /* FriendListViewCell.swift in Sources */,
+				BFCDB1F72A34712500B2900F /* GradientButton.swift in Sources */,
+				BFCDB1FF2A35F5E800B2900F /* CircleButton.swift in Sources */,
+				BFCDB2042A36AF7600B2900F /* ProductsViewController.swift in Sources */,
 				BFCDB1ED2A3403E300B2900F /* FriendListView.swift in Sources */,
 				BFCDB1E52A336F8600B2900F /* DotsAnimationView.swift in Sources */,
 				BFCDB1E92A33798800B2900F /* FriendsListLabel.swift in Sources */,
+				BFCDB2082A36B27400B2900F /* ManageViewController.swift in Sources */,
+				BFCDB2012A36AE3500B2900F /* MainTabbarController.swift in Sources */,
 				BFCDB1E12A3369B000B2900F /* FriendsViewModel.swift in Sources */,
+				BFCDB20A2A36B28800B2900F /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

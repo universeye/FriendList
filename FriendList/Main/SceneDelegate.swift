@@ -17,8 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let vc = FriendsViewController()
-        window?.rootViewController = UINavigationController(rootViewController: vc)
+        let vc = MainTabbarController()
+        vc.selectedIndex = 1
+        window?.rootViewController = vc
         window?.makeKeyAndVisible()
     }
 
