@@ -14,7 +14,7 @@ class GradientButton: UIButton {
     private let icon: UIImageView = {
        let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = Icon.addFriendWhiteIcon
+        
         image.contentMode = .scaleAspectFit
         return image
     }()
@@ -28,6 +28,16 @@ class GradientButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    convenience init(title: String, image: UIImage) {
+        self.init(frame: .zero)
+        set(title: title, image: image)
+    }
+    
+    func set(title: String, image: UIImage) {
+        setTitle(title, for: .normal)
+        icon.image = image
+    }
+    
     private func configure() {
 //        gradientLayer.frame.size = self.frame.size
 //        gradientLayer.colors = [UIColor.white.cgColor,UIColor.green.withAlphaComponent(1).cgColor]
@@ -37,8 +47,12 @@ class GradientButton: UIButton {
         backgroundColor = FriendListColor.hotPink
         layer.cornerRadius = 20
         layer.insertSublayer(gradientLayer, at: 0)
-        setTitle("加好友", for: .normal)
         translatesAutoresizingMaskIntoConstraints = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowRadius = 6
+        layer.shadowOpacity = 0.1
+        layer.shadowOffset = CGSize(width: 4, height: 4)
+        layer.masksToBounds = false
         
         NSLayoutConstraint.activate([
             icon.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),

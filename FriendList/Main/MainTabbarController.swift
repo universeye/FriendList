@@ -24,7 +24,7 @@ class MainTabbarController: UITabBarController {
 
     
     func createFriendNavigationController() -> UINavigationController {
-        let friendVC = FriendsViewController()
+        let friendVC = SelectorViewController()
         friendVC.title = "朋友"
         friendVC.tabBarItem = UITabBarItem(title: "朋友", image: Icon.friendIcon, tag: 1)
         return UINavigationController(rootViewController: friendVC)

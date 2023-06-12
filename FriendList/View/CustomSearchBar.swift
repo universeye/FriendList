@@ -19,10 +19,9 @@ class CustomSearchBar : UISearchBar {
     
     private func commonInit() {
         searchBarStyle = .minimal
-        placeholder = " Search..."
+        placeholder = " 想轉一筆給誰呢？"
         sizeToFit()
         layer.cornerRadius = 5
-
         tintColor = FriendListColor.hotPink
         isTranslucent = false
         backgroundColor = .white

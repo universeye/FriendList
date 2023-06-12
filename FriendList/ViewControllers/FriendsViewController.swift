@@ -9,6 +9,7 @@ import UIKit
 
 class FriendsViewController: UIViewController {
     //MARK: - Properties
+    private lazy var backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtontapped))
     private lazy var scanButton = UIBarButtonItem(image: Icon.pinkScanIcon, style: .plain, target: self, action: #selector(didTapScanButton))
     private lazy var withDrawButton = UIBarButtonItem(image: Icon.pinkWithDrawIcon, style: .plain, target: self, action: #selector(didTapWithDrawButton))
     private lazy var transferButton = UIBarButtonItem(image: Icon.pinkTransferIcon, style: .plain, target: self, action: #selector(didTapTransferButton))
@@ -35,6 +36,7 @@ class FriendsViewController: UIViewController {
     private var originSearchBarPosition: CGFloat = 0
     private var originFriendListTableView: CGFloat = 0
     private var originAddFriendButton: CGFloat = 0
+    private var currentScenario: Scenario = .friendsWithInvites
     
     //MARK: - App's Life cycle
     override func viewDidLoad() {
@@ -45,7 +47,7 @@ class FriendsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.getData(scenario: .friendsWithInvites)
+        viewModel.getData(scenario: currentScenario)
     }
     
     override func viewDidLayoutSubviews() {
@@ -53,6 +55,15 @@ class FriendsViewController: UIViewController {
         originSearchBarPosition = searchBar.frame.origin.y
         originAddFriendButton = addFriendButton.frame.origin.y
         originFriendListTableView = friendListTableView.frame.origin.y
+    }
+    
+    init(currentScenario: Scenario) {
+        super.init(nibName: nil, bundle: nil)
+        self.currentScenario = currentScenario
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func setupBinding() {
@@ -88,8 +99,9 @@ class FriendsViewController: UIViewController {
     private func configureNav() {
         view.backgroundColor = FriendListColor.white2
         title = ""
+        backButton.tintColor = FriendListColor.hotPink
         navigationItem.rightBarButtonItem = scanButton
-        navigationItem.leftBarButtonItems = [withDrawButton, transferButton]
+        navigationItem.leftBarButtonItems = [backButton, withDrawButton, transferButton]
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -189,33 +201,19 @@ class FriendsViewController: UIViewController {
         
     }
     
-    @objc private func didTapWithDrawButton() {
-        showLoadingView()
-        searchBar.removeFromSuperview()
-        addFriendButton.removeFromSuperview()
-        isInvitingTableView.removeFromSuperview()
-        viewModel.getData(scenario: .noFriends)
+    @objc private func backButtontapped() {
+        self.navigationController?.popViewController(animated: true)
     }
     
-    @objc private func didTapTransferButton() {
-        showLoadingView()
-        isInvitingTableView.removeFromSuperview()
-        viewModel.getData(scenario: .friends_1)
-    }
+    @objc private func didTapWithDrawButton() {}
     
-    @objc private func didTapScanButton() {
-        showLoadingView()
-        userInfoView.removeFromSuperview()
-        codeSegmented.removeFromSuperview()
-        dividerView.removeFromSuperview()
-        friendListTableView.removeFromSuperview()
-        searchBar.removeFromSuperview()
-        addFriendButton.removeFromSuperview()
-        viewModel.getData(scenario: .friendsWithInvites)
-    }
+    @objc private func didTapTransferButton() {}
+    
+    @objc private func didTapScanButton() {}
+    
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyBoardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+        if let _ = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 UIView.animate(withDuration: 0.3, delay: 0.0) {
                     self.userInfoView.isHidden = true
@@ -252,7 +250,7 @@ class FriendsViewController: UIViewController {
     
     //MARK: Refresh Actions
     @objc private func refresh(_ sender: AnyObject) {
-        viewModel.getData(scenario: .friendsWithInvites)
+        viewModel.getData(scenario: currentScenario)
     }
     
 }

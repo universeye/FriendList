@@ -20,7 +20,7 @@ class EmptyFriendView: UIView {
     private let titleLabel = FriendsListLabel(textAlignment: .center, fontSize: 23, textColor: FriendListColor.greyishBrown, fontWeigth: .medium)
     private let descriptionLabel = FriendsListLabel(textAlignment: .center, fontSize: 17, textColor: FriendListColor.brownGrey, fontWeigth: .regular)
     
-    private let addFriendButton = GradientButton()
+    private let addFriendButton = GradientButton(title: "加好友", image: Icon.addFriendWhiteIcon)
     
     private let hintLabel = FriendsListLabel(textAlignment: .center, fontSize: 15, textColor: FriendListColor.brownGrey, fontWeigth: .regular)
     

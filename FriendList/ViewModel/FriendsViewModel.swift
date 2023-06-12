@@ -31,7 +31,6 @@ class FriendsViewModel {
             if !friendListIsInviting.isEmpty {
                 valueChanged?(self)
             }
-            
         }
     }
     
@@ -88,8 +87,6 @@ class FriendsViewModel {
                     let friendData_1 = try await NetworkManager.shared.getFriendsData(scenario: scenario)
                     self.friendListData = friendData_1.response.map { $0 }.sorted { ($0.status, $0.isTop) > ($1.status, $1.isTop) }
                 }
-                
-                
                 
                 self.userData = userData.response[0]
                 self.originFriendListData = friendListData
