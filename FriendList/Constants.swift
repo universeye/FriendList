@@ -26,6 +26,7 @@ struct Icon {
     static let pinkScanIcon = UIImage(named: "pinkScan")!.withRenderingMode(.alwaysOriginal)
     static let pinkTransferIcon = UIImage(named: "pinkTransfer")!.withRenderingMode(.alwaysOriginal)
     static let pinkWithDrawIcon = UIImage(named: "pinkWithDraw")!.withRenderingMode(.alwaysOriginal)
+    static let addFriendIcon = UIImage(named: "addFriendIcon")!.withRenderingMode(.alwaysOriginal)
     static let femalePlaceHolderImage = UIImage(named: "femalePlaceHolderImage")!.withRenderingMode(.alwaysOriginal)
     static let addFriendWhiteIcon = UIImage(named: "addFriendWhiteIcon")!.withRenderingMode(.alwaysOriginal)
     static let productsIcon = UIImage(named: "moneyIcon")!.withRenderingMode(.alwaysTemplate)

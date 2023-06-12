@@ -29,6 +29,8 @@ class FriendsViewController: UIViewController {
         view.backgroundColor = UIColor.systemGray.withAlphaComponent(0.2)
         return view
     }()
+    private let searchBar = CustomSearchBar()
+    private let addFriendButton = AddFriendButton()
     private lazy var codeSegmented = CustumSegmentedControl(frame: CGRect(x: 0, y: 150, width: self.view.frame.width, height: 50), buttonTitle: ["好友", "聊天"])
     
     //MARK: - App's Life cycle
@@ -138,9 +140,22 @@ class FriendsViewController: UIViewController {
         friendListTableView.delegate = self
         friendListTableView.addSubview(refreshControlll)
         refreshControlll.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        searchBar.delegate = self
+        view.addSubview(searchBar)
+        view.addSubview(addFriendButton)
         
         NSLayoutConstraint.activate([
-            friendListTableView.topAnchor.constraint(equalTo: dividerView.bottomAnchor),
+            addFriendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            addFriendButton.topAnchor.constraint(equalTo: dividerView.bottomAnchor,constant: 8),
+            addFriendButton.heightAnchor.constraint(equalToConstant: 50),
+            addFriendButton.widthAnchor.constraint(equalToConstant: 50),
+            
+            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            searchBar.trailingAnchor.constraint(equalTo: addFriendButton.leadingAnchor, constant: 8),
+            searchBar.topAnchor.constraint(equalTo: dividerView.bottomAnchor, constant: 8),
+            searchBar.heightAnchor.constraint(equalToConstant: 50),
+            
+            friendListTableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             friendListTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             friendListTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             friendListTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -162,6 +177,8 @@ class FriendsViewController: UIViewController {
     
     @objc private func didTapWithDrawButton() {
         showLoadingView()
+        searchBar.removeFromSuperview()
+        addFriendButton.removeFromSuperview()
         isInvitingTableView.removeFromSuperview()
         viewModel.getData(scenario: .noFriends)
     }
@@ -215,4 +232,10 @@ extension FriendsViewController: CustumSegmentedControlDelegate {
     func chageToIndex(index: Int) {
         print(index)
     }
+}
+
+
+//MARK: - UISearchBarDelegate
+extension FriendsViewController: UISearchBarDelegate {
+    
 }
