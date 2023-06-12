@@ -90,8 +90,6 @@ class FriendsViewController: UIViewController {
                 self.dimissLoadingView()
                 
             }
-            print("Friend List Data: \(viewModel.friendListData), Friend List is Inviting: \(viewModel.friendListIsInviting)")
-            
         }
     }
     
