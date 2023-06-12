@@ -11,10 +11,18 @@ fileprivate var containerView: UIView!
 
 extension UIViewController {
     func showLoadingView() {
-        containerView = UIView(frame: view.bounds)
+        containerView = UIView(frame: .zero)
         view.addSubview(containerView)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
         
-        containerView.backgroundColor = .black
+        NSLayoutConstraint.activate([
+            containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            containerView.widthAnchor.constraint(equalToConstant: 140),
+            containerView.heightAnchor.constraint(equalToConstant: 140)
+        ])
+        containerView.layer.cornerRadius = 20
+        containerView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         containerView.alpha = 0
         
         UIView.animate(withDuration: 0.25) {
