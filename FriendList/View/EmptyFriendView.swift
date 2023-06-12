@@ -61,19 +61,12 @@ class EmptyFriendView: UIView {
     
     func setGradientBackground() {
         addSubview(addFriendButton)
-        addSubview(hintLabel)
-        hintLabel.text = "幫助好友更快找到你？設定 KOKO ID"
         
         NSLayoutConstraint.activate([
             addFriendButton.widthAnchor.constraint(equalToConstant: 250),
             addFriendButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 32),
-            addFriendButton.heightAnchor.constraint(equalToConstant: 43),
-            addFriendButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
-            hintLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            hintLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            hintLabel.topAnchor.constraint(equalTo: addFriendButton.bottomAnchor, constant: 50),
-            hintLabel.heightAnchor.constraint(equalToConstant: 30)
+            addFriendButton.heightAnchor.constraint(equalToConstant: 49),
+            addFriendButton.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
 }

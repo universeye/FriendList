@@ -41,9 +41,9 @@ class GradientButton: UIButton {
         addSubview(icon)
         layer.cornerRadius = 20
         translatesAutoresizingMaskIntoConstraints = false
-        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowColor = FriendListColor.frogGreen.cgColor
         layer.shadowRadius = 6
-        layer.shadowOpacity = 0.1
+        layer.shadowOpacity = 0.8
         layer.shadowOffset = CGSize(width: 4, height: 4)
         layer.masksToBounds = false
         
