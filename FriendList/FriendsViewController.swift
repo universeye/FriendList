@@ -51,7 +51,7 @@ class FriendsViewController: UIViewController {
                 self.userInfoView.name.text = self.viewModel.userData?.name ?? ""
                 self.userInfoView.kokoIDLabel.text = "KOKO ID: \(self.viewModel.userData?.kokoid ?? "")"
                 self.configureUserInfoView(isInvitingDataExsist: !self.viewModel.friendListIsInviting.isEmpty)
-                
+                self.codeSegmented.setUnreadCount(isInvitingCount: self.viewModel.friendListIsInviting.count + 1, isShowUnreadCount: !self.viewModel.friendListData.isEmpty)
                 if self.viewModel.friendListData.isEmpty {
                     self.configureEmptyView()
                     self.emptyView.isHidden = false

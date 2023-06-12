@@ -16,19 +16,11 @@ class CustumSegmentedControl: UIView {
     private var buttonTitles: [String]!
     private var buttons: [UIButton]!
     private var selectorView: UIView!
-    private var unreadCount: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.translatesAutoresizingMaskIntoConstraints =  false
-        label.textColor = .white
-        label.layer.backgroundColor = FriendListColor.softPink.cgColor
-        label.layer.cornerRadius = 9
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.textAlignment = .center
-        return label
-    }()
-    var textColor: UIColor = FriendListColor.greyishBrown
-    var selectorViewColor: UIColor = FriendListColor.hotPink
-    var selectorTextColor: UIColor = .black
+    var unreadCount = UnreadCountLabel()
+    var isInvitingCount = UnreadCountLabel()
+    private var textColor: UIColor = FriendListColor.greyishBrown
+    private var selectorViewColor: UIColor = FriendListColor.hotPink
+    private var selectorTextColor: UIColor = .black
     weak var delegte: CustumSegmentedControlDelegate?
     private var _selectedIndex: Int = 0
     public var selectedIndex: Int {
@@ -48,6 +40,18 @@ class CustumSegmentedControl: UIView {
     func setButtonTitles(buttonTitle: [String]) {
         self.buttonTitles = buttonTitle
         updateView()
+    }
+    
+    func setUnreadCount(isInvitingCount: Int, isShowUnreadCount: Bool) {
+        if isInvitingCount > 0 {
+            self.isInvitingCount.isHidden = false
+            self.isInvitingCount.text = "\(isInvitingCount)"
+        } else {
+            self.isInvitingCount.isHidden = true
+        }
+        
+        self.unreadCount.isHidden = !isShowUnreadCount
+        
     }
     
     private func configureStackView() {
@@ -132,10 +136,22 @@ class CustumSegmentedControl: UIView {
         ])
     }
     
+    private func configureIsInvitingCount() {
+        buttons[0].addSubview(isInvitingCount)
+        
+        NSLayoutConstraint.activate([
+            isInvitingCount.leadingAnchor.constraint(equalTo: buttons[0].titleLabel!.trailingAnchor, constant: 4),
+            isInvitingCount.centerYAnchor.constraint(equalTo: buttons[0].centerYAnchor, constant: -8),
+            isInvitingCount.widthAnchor.constraint(equalToConstant: 20),
+            isInvitingCount.heightAnchor.constraint(equalToConstant: 20)
+        ])
+    }
+    
     private func updateView() {
         createButton()
         configSelectorView()
         configureStackView()
         configureUnreadCountText()
+        configureIsInvitingCount()
     }
 }

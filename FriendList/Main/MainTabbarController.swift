@@ -47,7 +47,7 @@ class MainTabbarController: UITabBarController {
     func createSettingNavigationController() -> UINavigationController {
         let settingsVC = SettingsViewController()
         settingsVC.title = "設定"
-        settingsVC.tabBarItem = UITabBarItem(title: "設定", image: UIImage(systemName: "gearshape"), tag: 4)
+        settingsVC.tabBarItem = UITabBarItem(title: "設定", image: UIImage(systemName: "slider.horizontal.3"), tag: 4)
         return UINavigationController(rootViewController: settingsVC)
     }
 
