@@ -9,6 +9,7 @@ import UIKit
 
 class IsInvitingTableViewController: UIViewController {
     
+    private var tapCount: Int = 0
     var hiddenSections = Set<Int>()
     var isInvitingMember: [Friends.Response]
     var isInvitingMemberData: [[Friends.Response]] = []
@@ -60,7 +61,7 @@ class IsInvitingTableViewController: UIViewController {
     
     @objc private func hideSection() {
         let section = tag
-        
+        tapCount += 1
         func indexPathsForSection() -> [IndexPath] {
             var indexPaths = [IndexPath]()
             
@@ -81,10 +82,7 @@ class IsInvitingTableViewController: UIViewController {
             self.tableView.deleteRows(at: indexPathsForSection(),
                                       with: .fade)
         }
-    }
-    
-    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        // handling code
+        self.tableView.reloadData()
     }
 }
 
@@ -112,18 +110,32 @@ extension IsInvitingTableViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         tag = section
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideSection))
         let containerView = UIView()
         let containerView2 = IsInvitingCellView(name: firstInvitation.name)
+        let backGroundView = BackGroundView()
+        
+        if tapCount % 2 == 0 {
+            backGroundView.isHidden = true
+        } else {
+            backGroundView.isHidden = false
+        }
+
+        containerView.addSubview(backGroundView)
         containerView.addSubview(containerView2)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideSection))
         containerView2.addGestureRecognizer(tap)
         NSLayoutConstraint.activate([
+            backGroundView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 42),
+            backGroundView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -42),
+            backGroundView.heightAnchor.constraint(equalToConstant: 85),
+            backGroundView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            
             containerView2.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 32),
             containerView2.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -32),
             containerView2.heightAnchor.constraint(equalToConstant: 70),
             containerView2.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
         ])
-        
         return containerView
     }
     

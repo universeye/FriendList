@@ -44,6 +44,7 @@
 		BFCDB2102A36DD6E00B2900F /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB20F2A36DD6E00B2900F /* CustomSearchBar.swift */; };
 		BFCDB2122A36E12600B2900F /* AddFriendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB2112A36E12600B2900F /* AddFriendButton.swift */; };
 		BFCDB2162A36F89200B2900F /* SelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB2152A36F89200B2900F /* SelectorViewController.swift */; };
+		BFCDB21A2A37045F00B2900F /* BackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB2192A37045F00B2900F /* BackGroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		BFCDB20F2A36DD6E00B2900F /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		BFCDB2112A36E12600B2900F /* AddFriendButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendButton.swift; sourceTree = "<group>"; };
 		BFCDB2152A36F89200B2900F /* SelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorViewController.swift; sourceTree = "<group>"; };
+		BFCDB2192A37045F00B2900F /* BackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackGroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 				BFCDB1E62A33774800B2900F /* EmptyFriendView.swift */,
 				BFCDB1FC2A35EEA600B2900F /* IsInvitingCellView.swift */,
 				BFCDB20F2A36DD6E00B2900F /* CustomSearchBar.swift */,
+				BFCDB2192A37045F00B2900F /* BackGroundView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				BFCDB1F12A340E3500B2900F /* FriendListCellButton.swift in Sources */,
 				BFCDB1F92A35C86B00B2900F /* IsInvitingTableViewController.swift in Sources */,
 				BFCDB2122A36E12600B2900F /* AddFriendButton.swift in Sources */,
+				BFCDB21A2A37045F00B2900F /* BackGroundView.swift in Sources */,
 				BF4287042A331EFE002758CE /* AppDelegate.swift in Sources */,
 				BFCDB1E72A33774800B2900F /* EmptyFriendView.swift in Sources */,
 				BFCDB1F32A343F9500B2900F /* CustumSegmentedControl.swift in Sources */,

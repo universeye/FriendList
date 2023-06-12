@@ -154,7 +154,7 @@ class FriendsViewController: UIViewController {
             isInvitingTableView.topAnchor.constraint(equalTo: userInfoView.bottomAnchor),
             isInvitingTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             isInvitingTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            isInvitingTableView.heightAnchor.constraint(greaterThanOrEqualToConstant: 190)
+            isInvitingTableView.heightAnchor.constraint(greaterThanOrEqualToConstant: 180)
         ])
     }
     
@@ -201,6 +201,8 @@ class FriendsViewController: UIViewController {
         
     }
     
+    
+    //MARK: - Funtions
     @objc private func backButtontapped() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -210,7 +212,6 @@ class FriendsViewController: UIViewController {
     @objc private func didTapTransferButton() {}
     
     @objc private func didTapScanButton() {}
-    
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let _ = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
@@ -252,7 +253,6 @@ class FriendsViewController: UIViewController {
     @objc private func refresh(_ sender: AnyObject) {
         viewModel.getData(scenario: currentScenario)
     }
-    
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
@@ -280,9 +280,7 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
 
 //MARK: - CUSTUMSegmentedControl Delegate
 extension FriendsViewController: CustumSegmentedControlDelegate {
-    func chageToIndex(index: Int) {
-        
-    }
+    func chageToIndex(index: Int) {}
 }
 
 
@@ -294,7 +292,6 @@ extension FriendsViewController: UISearchBarDelegate {
             self.viewModel.filter(keyword: searchBar.text ?? "")
             self.searchBar.showsCancelButton = false
         }
-        
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
