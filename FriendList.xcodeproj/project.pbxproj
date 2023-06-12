@@ -45,6 +45,8 @@
 		BFCDB2122A36E12600B2900F /* AddFriendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB2112A36E12600B2900F /* AddFriendButton.swift */; };
 		BFCDB2162A36F89200B2900F /* SelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB2152A36F89200B2900F /* SelectorViewController.swift */; };
 		BFCDB21A2A37045F00B2900F /* BackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB2192A37045F00B2900F /* BackGroundView.swift */; };
+		BFCDB21C2A370C0C00B2900F /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB21B2A370C0C00B2900F /* CustomAlertViewController.swift */; };
+		BFCDB21E2A370C4600B2900F /* AlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDB21D2A370C4600B2900F /* AlertContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,8 @@
 		BFCDB2112A36E12600B2900F /* AddFriendButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendButton.swift; sourceTree = "<group>"; };
 		BFCDB2152A36F89200B2900F /* SelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorViewController.swift; sourceTree = "<group>"; };
 		BFCDB2192A37045F00B2900F /* BackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackGroundView.swift; sourceTree = "<group>"; };
+		BFCDB21B2A370C0C00B2900F /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
+		BFCDB21D2A370C4600B2900F /* AlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +251,7 @@
 				BFCDB1FC2A35EEA600B2900F /* IsInvitingCellView.swift */,
 				BFCDB20F2A36DD6E00B2900F /* CustomSearchBar.swift */,
 				BFCDB2192A37045F00B2900F /* BackGroundView.swift */,
+				BFCDB21D2A370C4600B2900F /* AlertContainerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 			children = (
 				BF4287072A331EFE002758CE /* FriendsViewController.swift */,
 				BFCDB1F82A35C86B00B2900F /* IsInvitingTableViewController.swift */,
+				BFCDB21B2A370C0C00B2900F /* CustomAlertViewController.swift */,
 				BFCDB2032A36AF7600B2900F /* ProductsViewController.swift */,
 				BFCDB2052A36B25C00B2900F /* HomeViewController.swift */,
 				BFCDB2072A36B27400B2900F /* ManageViewController.swift */,
@@ -440,7 +446,9 @@
 				BF4287082A331EFE002758CE /* FriendsViewController.swift in Sources */,
 				BFCDB1DA2A3355FC00B2900F /* UserInfoView.swift in Sources */,
 				BFCDB1D52A33301200B2900F /* Constants.swift in Sources */,
+				BFCDB21E2A370C4600B2900F /* AlertContainerView.swift in Sources */,
 				BFCDB1F12A340E3500B2900F /* FriendListCellButton.swift in Sources */,
+				BFCDB21C2A370C0C00B2900F /* CustomAlertViewController.swift in Sources */,
 				BFCDB1F92A35C86B00B2900F /* IsInvitingTableViewController.swift in Sources */,
 				BFCDB2122A36E12600B2900F /* AddFriendButton.swift in Sources */,
 				BFCDB21A2A37045F00B2900F /* BackGroundView.swift in Sources */,

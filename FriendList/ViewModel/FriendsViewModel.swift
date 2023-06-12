@@ -5,7 +5,7 @@
 //  Created by Terry Kuo on 2023/6/9.
 //
 
-import Foundation
+import UIKit
 
 class FriendsViewModel {
     
@@ -92,8 +92,45 @@ class FriendsViewModel {
                 self.originFriendListData = friendListData
                 
             } catch {
-                print("Error: \(error)")
+                if let error = error as? FriendListError {
+                    self.presentAlert(title: "Error😵", messgae: error.rawValue, buttonTitle: "Ok")
+                } else {
+                    self.presentAlert(title: "Error😵", messgae: error.localizedDescription, buttonTitle: "Ok")
+                }
+                valueChanged?(self)
             }
         }
+    }
+    
+    func presentAlert(title: String, messgae: String, buttonTitle: String) {
+        DispatchQueue.main.async {
+            let alertVC = CustomAlertViewController(title: title, message: messgae, buttonTitle: buttonTitle)
+            alertVC.modalPresentationStyle = .overFullScreen
+            alertVC.modalTransitionStyle = .crossDissolve
+            
+            if let topController = UIApplication.topViewController() {
+                topController.present(alertVC, animated: true)
+            }
+            
+        }
+    }
+    
+    
+}
+
+extension UIApplication {
+    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
     }
 }

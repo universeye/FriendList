@@ -8,7 +8,7 @@
 import UIKit
 
 enum FriendListError:  String, Error {
-    case invalidSearchTerm = "This search term created an Invalid request."
+    case invalidSearchTerm = "Invalid request."
     case unableToComplete = "Unable to complete your requst, please try again later."
     case invalidResponse = "Invalid response from the server , please check the search term."
     case invalidData = "The data from the server recieved was invalid."
@@ -52,4 +52,5 @@ struct FriendListColor {
     static let softPink = UIColor(named: "softPink")!
     static let booger = UIColor(named: "booger")!
     static let frogGreen = UIColor(named: "frogGreen")!
+    static let transblack = UIColor(red: 0, green: 0, blue: 0, alpha: 0.65)
 }
